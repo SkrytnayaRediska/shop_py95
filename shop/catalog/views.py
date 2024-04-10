@@ -9,6 +9,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from catalog.tasks import some_task
+from drf_yasg.utils import swagger_auto_schema
 
 
 class CategoryListView(ListAPIView):
@@ -109,6 +110,13 @@ class CartView(APIView):
 class OrderView(APIView):
     permission_classes = (IsAuthenticated, )
 
+    @swagger_auto_schema(
+        request_method="POST",
+        request_body=OrderSerializer,
+        responses={
+            200: OrderSerializer
+        }
+    )
     def post(self, request):
         input_serializer = OrderSerializer(data=request.data,
                                            context={'request': request})
