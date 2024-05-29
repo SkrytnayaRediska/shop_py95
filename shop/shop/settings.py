@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'djoser',
     'users.apps.UsersConfig',
     'catalog.apps.CatalogConfig',
-    'django_celery_beat'
+    'django_celery_beat',
+    'oauth2_provider',
 ]
 
 MIDDLEWARE = [
@@ -203,3 +204,8 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+TELEGRAM_API_KEY = env('TELEGRAM_API_KEY')
+BACKEND_URL = env('BACKEND_URL')
+AUTH_ENDPOINT = env('AUTH_ENDPOINT')
+CART_ENDPOINT = env('CART_ENDPOINT')
