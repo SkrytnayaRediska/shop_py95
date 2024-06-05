@@ -4,26 +4,23 @@ on:
   push:
     branches: [ feature/test-ci ]
   pull_request:
-    branches: [ feature/test-ci , develop ]
+    branches: [ feature/test-ci, develop ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [ 3.10 ]
+
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.10
 
       - name: Set up .env
         run: |
-          echo "${{secrets.ENV_FILE }}" > shop/.env
+          echo "${{secrets.ENV_FILE}}" > shop/.env
 
       - name: Run DB
         run: |
